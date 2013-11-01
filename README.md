@@ -13,3 +13,7 @@ Current option on dynamically load js files into `theme/assets` to match Shopify
 
 + `ln -s` symlink; not ideal.
 + `modified `Gruntfile.js` inside bootstrap to `src : dest` into `theme/assets`. 
+
+## TODO (More like to learn lol)
+
++ How to load `node_modules` and install `grunt-contrib-copy` LOLOLOLOLOL 
