@@ -1,0 +1,18 @@
+{
+  "name": "shopistrap",
+  "version": "0.1.0",
+  "description": "Grunt file for Bootstrap 3 + Shopify 2 combo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajmalafif/shopistrap"
+  },
+  "author": "Ajmal Afif",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ajmalafif/shopistrap/issues"
+  }
+}

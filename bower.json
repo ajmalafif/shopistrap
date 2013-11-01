@@ -1,0 +1,18 @@
+{
+  "name": "shopistrap",
+  "version": "0.1.0",
+  "authors": [
+    "Ajmal Afif <ajmalafif@gmail.com>"
+  ],
+  "description": "Attempting at Bootstrap 3 + Shopify 2 combo.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bootstrap",
+    "test",
+    "tests"
+  ]
+}
