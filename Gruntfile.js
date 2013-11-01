@@ -7,7 +7,7 @@ module.exports = function(grunt) {
           {
             expand: true, 
             flatten: true,
-            src: ['source/bootstrap/dist/**/*.min.*', 'source/bootstrap/fonts/*'], 
+            src: ['source/bootstrap/dist/**/*.min.*', 'source/bootstrap/fonts/*', 'source/shopify-jquery-currencies/jquery.*.min.js'], 
             dest: 'theme/assets/'
           },
 
