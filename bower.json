@@ -1,6 +1,7 @@
 {
   "name": "shopistrap",
   "version": "0.1.0",
+  "main": ["./theme/*"],
   "authors": [
     "Ajmal Afif <ajmalafif@gmail.com>"
   ],
