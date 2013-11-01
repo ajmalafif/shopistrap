@@ -1,3 +1,5 @@
+It's a work in-progress so don't use this on your live site or clients work. 
+
 ## Will update soon
 
 References
@@ -5,7 +7,6 @@ References
 > http://gpiot.com/blog/twitter-bower-grunt-get-started-with-assets-management/
 
 + Remember to clear cache `bower cache-clean` to reinstall `bootstrap` with bower.
-
 
 ## Figure this out later
 
@@ -19,3 +20,8 @@ References
 ## TODO (More like to learn lol)
 
 + How to load `node_modules` and install `grunt-contrib-copy` LOLOLOLOLOL 
+
+## Step-by-step tutorial how to make use of this repo
+
+1. Run `bower install bootstrap`
+2. Run `grunt`
