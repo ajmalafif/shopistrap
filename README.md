@@ -24,4 +24,5 @@ References
 ## Step-by-step tutorial how to make use of this repo
 
 1. Run `bower install bootstrap`
-2. Run `grunt`
+2. Run `npm install`
+3. Run `grunt`
