@@ -7,7 +7,7 @@ module.exports = function(grunt) {
           {
             expand: true, 
             flatten: true,
-            src: ['source/bootstrap/dist/**/*.min.*', 'source/bootstrap/fonts/*', 'source/shopify-jquery-currencies/jquery.*.min.js'], 
+            src: ['source/bootstrap/dist/**/*.min.*', 'source/bootstrap/fonts/*', 'source/shopify-jquery-currencies/jquery.currencies.**'], 
             dest: 'theme/assets/'
           },
 
@@ -19,11 +19,11 @@ module.exports = function(grunt) {
           },
 
           {
-            expand: true, 
-            flatten: true,
-            src: 'source/shopify-skeleton-theme/layout/*.liquid', 
-            dest: 'theme/layout/'
-          },
+              expand: true, 
+              flatten: true,
+              src: 'source/shopify-skeleton-theme/layout/*.liquid', 
+              dest: 'theme/layout/'
+            },
 
           {
             expand: true, 
@@ -41,7 +41,29 @@ module.exports = function(grunt) {
 
         ]
       }
+    },
+
+    sync: {
+        main: {
+          files: [{
+            cwd: 'source/shopify-skeleton-theme/layout/',
+            src: '*.liquid',
+            dest: 'theme/layout'
+          }
+        ]
+      }
+    },
+
+    watch: {
+      liquid: {
+         files: 'source/shopify-skeleton-theme/layout/**',
+         tasks: ['sync'],
+         options: {
+           event: ['added', 'changed'],
+         }
+       }
     }
+
     //, concat: {
     //     bootstrap: {
     //       src: [
@@ -65,7 +87,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-sync');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy']);
+  grunt.registerTask('default', 'watch', 'sync');
 };

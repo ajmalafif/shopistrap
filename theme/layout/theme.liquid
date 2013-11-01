@@ -56,9 +56,11 @@
 
 </head>
 
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.show-multiple-currencies %} currencies{% endif %}" >
 
   <div class="container">
+
+    <h1>WOOHOO GRUNT WATCH WORKS NOW!</h1>
 
     <header>
       
