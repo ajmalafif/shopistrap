@@ -10,6 +10,28 @@ module.exports = function(grunt) {
             src: ['source/bootstrap/dist/**/*.min.*', 'source/bootstrap/fonts/*'], 
             dest: 'theme/assets/'
           },
+
+          {
+            expand: true, 
+            flatten: true,
+            src: 'source/shopify-skeleton-theme/config/settings.html', 
+            dest: 'theme/config/'
+          },
+
+          {
+            expand: true, 
+            flatten: true,
+            src: 'source/shopify-skeleton-theme/layout/*.liquid', 
+            dest: 'theme/layout/'
+          },
+
+          {
+            expand: true, 
+            flatten: true,
+            src: 'source/shopify-skeleton-theme/snippets/*.liquid', 
+            dest: 'theme/snippets/'
+          },
+
           {
             expand: true, 
             flatten: true,
