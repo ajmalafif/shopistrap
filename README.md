@@ -9,10 +9,12 @@ References
 
 ## Figure this out later
 
-Current option on dynamically load js files into `theme/assets` to match Shopify template structure;
+> Current option on dynamically load js files into `theme/assets` to match Shopify template structure;
 
-+ `ln -s` symlink; not ideal.
-+ `modified `Gruntfile.js` inside bootstrap to `src : dest` into `theme/assets`. 
++ ~~`ln -s` symlink; not ideal.~~
++ ~~`modified `Gruntfile.js` inside bootstrap to `src : dest` into `theme/assets`. ~~
+
+> Figured better to copy Bootstrap files into `theme/assets` instead of the other way around.
 
 ## TODO (More like to learn lol)
 
