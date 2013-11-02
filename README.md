@@ -6,7 +6,8 @@ It's a work in-progress so don't use this on your live site or clients work.
 
 #### features
 
-+ multiple currencies 
++ multiple currencies
++ google/custom fonts
 
 ## How to use
 

@@ -27,7 +27,7 @@
   {{ '_settings.scss.css' | asset_url | stylesheet_tag }}
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   
-  {% include 'fonts' %}
+  <!-- {% include 'fonts' %} -->
 
   <!--[if lt IE 9]>
   {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
@@ -56,11 +56,9 @@
 
 </head>
 
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.show-multiple-currencies %} currencies{% endif %}" >
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
   <div class="container">
-
-    <h1>WOOHOO GRUNT WATCH WORKS NOW!</h1>
 
     <header>
       
