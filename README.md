@@ -4,10 +4,10 @@ It's a work in-progress so don't use this on your live site or clients work.
 
 + Markup for layout/snippets.
 
-#### features
+#### Features
 
-+ ~~multiple currencies~~ [Implemented here.](https://github.com/ajmalafif/shopistrap/commit/1ca7717e56ef07e2472cacab927537890ccdc590)
-+ google/custom fonts
++ ~~Multiple currencies~~. [Implemented here.](https://github.com/ajmalafif/shopistrap/commit/1ca7717e56ef07e2472cacab927537890ccdc590)
++ Google/custom fonts
 
 ## How to use
 
