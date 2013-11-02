@@ -46,9 +46,9 @@ module.exports = function(grunt) {
     sync: {
         main: {
           files: [{
-            cwd: 'source/shopify-skeleton-theme/layout/',
-            src: '*.liquid',
-            dest: 'theme/layout'
+            cwd: 'source/shopify-skeleton-theme/',
+            src: '**/*',
+            dest: 'theme/'
           }
         ]
       }
@@ -56,10 +56,10 @@ module.exports = function(grunt) {
 
     watch: {
       liquid: {
-         files: 'source/shopify-skeleton-theme/layout/**',
+         files: 'source/shopify-skeleton-theme/**/*',
          tasks: ['sync'],
          options: {
-           event: ['added', 'changed'],
+           event: ['added', 'changed']
          }
        }
     }
