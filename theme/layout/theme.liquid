@@ -56,7 +56,7 @@
 
 </head>
 
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {% if settings.show-multiple-currencies %} currencies{% endif %}" >
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
   <div class="container">
 
@@ -196,7 +196,7 @@
       
       <p role="contentinfo">Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}.</p>
 
-      {% include 'currency-switcher' %}
+      {% include 'currencies-switcher' %}
 
     </footer>
 
@@ -207,8 +207,8 @@
     
   </div><!-- end of #container -->
   
-  {% include 'currencies' %}
-
   {{ 'shop.js'  | asset_url | script_tag }}
+
+  {% include 'currencies' %}
 </body>
 </html>
