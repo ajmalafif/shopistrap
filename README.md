@@ -4,7 +4,11 @@ It's a work in-progress so don't use this on your live site or clients work.
 
 + Markup for layout/snippets.
 
-## Step-by-step tutorial how to make use of this repo
+#### features
+
++ multiple currencies 
+
+## How to use
 
 1. Run `bower install bootstrap && bower install shopify-skeleton-theme` 
 2. Run `npm install`
