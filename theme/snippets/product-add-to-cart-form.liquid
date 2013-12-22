@@ -1,0 +1,55 @@
+<hr>
+<div class="row">
+  {% if settings.placement-of-add-to-cart-button == "at-top-of-page" %}{% include 'product-add-to-cart-button' %}{% endif %}
+  <div id="product-variants" class="col-sm-6">
+    <select id="product-select" name="id" class="form-control">
+      {% for v in product.variants %}
+      <option value="{{ v.id }}">{{ v.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  {% if settings.placement-of-add-to-cart-button == "below-variant-options" %}{% include 'product-add-to-cart-button' %}{% endif %}
+</div>
+<hr>
+    
+<script type="text/javascript">
+// <![CDATA[  
+var selectCallback = function(variant, selector) {
+  $('.single-option-selector').addClass('form-control');
+  $('#purchase').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+  $('#purchase').removeClass('btn-primary');
+  $('#purchase').val('{% include '__localize' with 'Unavailable' %}');
+  // $('#purchase').hide();
+  $('#price-field').addClass('text-muted');      // set add-to-cart button to unavailable class and disable button
+  if (variant) {
+    $('#price-field').html(Shopify.formatMoney(variant.price, "<span class=\"money\">{{ shop.money_with_currency_format | remove: '<span class="money">' | remove: '</span>' }}</span>"));
+    if (variant.compare_at_price > 0) {
+      $('#compare-at-price-field').html(Shopify.formatMoney(variant.compare_at_price, "<span class=\"money\">{{ shop.money_with_currency_format | remove: '<span class="money">' | remove: '</span>' }}</span>"));  // update compare-at-price field
+      $('#sale-field').show(); // update sale-field message
+    } else {
+      $('#compare-at-price-field').text('');  // clear compare-at-price field
+      $('#sale-field').hide(); // clear sale-field message
+    }
+      
+    if (variant.available == true) {
+      // $('#purchase').show();
+      $('#purchase').addClass('btn-primary');
+      $('#purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+      $('#purchase').val('{% include '__localize' with 'Add to cart' %}');
+      $('#price-field').removeClass('text-muted');      // set add-to-cart button to unavailable class and disable button
+    } else {
+      $('#purchase').val('{% include '__localize' with 'Sold out' %}');
+    }
+  } else {
+    $('#compare-at-price-field').text('');  // clear compare-at-price field
+    $('#price-field').text('{% include '__localize' with 'Unavailable' %}');  // update price field
+    $('#sale-field').hide(); // clear sale-field message
+  } 
+};
+
+// initialize multi-selector for product
+$(function() {
+  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+});
+// ]]>
+</script>

@@ -1,123 +1,56 @@
-<h1>Shopping Cart</h1>
-  
-{% if cart.item_count > 0 %}
+<h1 class="page-header">{{ page_title }}</h1>
 
-<form action="/cart" method="post">
-  
-  <table>
-    
+{% if cart.item_count == 0 %}
+<p class="lead">
+  {% include '__localize' with 'Your cart is empty' %}.{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with 'Browse all products' %}</a>.{% endunless %}
+</p>
+{% else %}
+<script type="text/javascript">
+function remove_item(id) {
+  document.getElementById('updates_'+id).value = 0;
+  document.getElementById('cart').submit();
+}
+</script>
+
+<form action="/cart" method="post" id="cart">
+  <table class="table {% include '__table-formatting' %}">
     <thead>
       <tr>
-        <th>Item</th>
-        <th>&nbsp;</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th>&nbsp;</th>
+        <th class="hidden-xs">&nbsp;</th>
+        <th>{% include '__localize' with 'Item' %}</th>
+        <th class="money hidden-xs">{% include '__localize' with 'Price' %}</th>
+        <th class="text-center" style="width: 50px;">{% include '__localize' with 'Qty' %}</th>
+        <th class="hidden-xs">&nbsp;</th>
+        <th class="money">{% include '__localize' with 'Line total' %}</th>
       </tr>
     </thead>
-    
     <tbody>
-
-    {% for item in cart.items %}    
-    
-      {% comment %}
-      Determining the handle of the collection that was last seen for the 'continue shopping' link.
-      {% endcomment %}
-      
-      {% if forloop.first %}
-        {% assign collection_url = item.product.collections.first.url %}
-        {% if collection_url == '/collections/frontpage' or collection_url == '' %}{% assign collection_url = '/collections/all' %}{% endif %}
-      {% endif %}
-
+      {% for i in cart.items %}
       <tr>
+        <td class="col-sm-2 hidden-xs"><img src="{{ i.product.featured_image | product_img_url: 'small' }}" class="thumbnail"></td>
         <td>
-          <a href="{{ item.product.url | within: collections.all }}">  
-            <img src="{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
-          </a>
+          <strong>{{ i.product.title | link_to: i.product.url }}</strong>
+          <small class="text-muted">{{ i.title | remove: i.product.title | remove: ' - ' }}</small>
         </td>
-        <td>
-          <h2>
-            <a href="{{ item.product.url | within: collections.all }}">
-            {{ item.title }}
-            {% if item.product.variants.size == 1 %}
-              {% unless item.variant.title contains 'Default' %}
-               - {{ item.variant.title }}
-              {% endunless %}
-            {% endif %}
-            </a>
-          </h2>
-          {% comment %}
-          Line Item Properties
-          {% endcomment %}
-          {% if item.properties.size > 0 %}
-          <p>
-            {% for p in item.properties %}
-              {% unless p.last == blank %}
-                {{ p.first }}:
-                {% if p.last contains '/uploads/' %}
-                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                {% else %}
-                  {{ p.last }}
-                {% endif %}
-                <br />
-              {% endunless %}
-            {% endfor %}
-          </p>
-          {% endif %}
-          <h3>{{ item.vendor }}</h3>
+        <td class="money hidden-xs"><span class='money'>{{ i.price | money_with_currency | replace: ' ','&nbsp' }}</span></td>
+        <td class="text-center">
+          <input type="text" class="form-control" name="updates[{{ i.variant.id }}]" id="updates_{{ i.variant.id }}" value="{{ i.quantity }}" onfocus="this.select();"/>
         </td>
-        <td>{{ item.price | money }}</td>
-        <td>
-          <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
-        </td>
-        <td>{{ item.line_price | money }}</td>
-        <td>
-          <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+        <td class="hidden-xs"><a class="text-muted" href="#" onclick="remove_item({{ i.variant.id }}); return false;"><i class="fa fa-times"></i></a></td>
+        <td class="money">
+          <span class='money'>{{ i.line_price | money_with_currency | replace: ' ','&nbsp' }}</span>
         </td>
       </tr>
-    {% endfor %}
-    
+      {% endfor %}
     </tbody>
-    
   </table>
   
-  {% comment %}
-  For the checkout and update buttons to work, they need to use
-  a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
-  {% endcomment %}
-  
-  <div>
-    <h3>Subtotal <em>{{ cart.total_price | money }}</em></h3>
-    <a href="{{ collection_url }}">Continue shopping</a>
-    <span class="or">or</span>
-    <input type="submit" name="update" value="Update cart" />
-    <span class="or">or</span>
-    <input type="submit" name="checkout" value="Check out" />    
-    {% comment %}Paypal and Google checkout buttons{% endcomment %}
-    {% if additional_checkout_buttons %}
-    <p class="additional-checkout-buttons">
-      {{ content_for_additional_checkout_buttons }}
-    </p>
-    {% endif %}    
+  <div class="form-actions text-right">
+    <h3><small>{% include '__localize' with 'Sub-total' %}</small> <span class='money'>{{ cart.total_price | money_with_currency | replace: ' ','&nbsp' }}</span></h3>
+    <div class="btn-group">
+      <input type="submit" id="update-cart" name="update" value="{% include '__localize' with 'Update' %}" class="btn btn-default" />
+      <input type="submit" name="checkout" value="{% include '__localize' with 'Checkout' %}" class="btn btn-primary" />
+    </div>
   </div>
-  
-  {% comment %}
-  For the special instructions to be submitted with order,
-  they need to use a name attribute set to 'note'. That's case-sensitive.
-  {% endcomment %}
-  <div>
-    <p>Special instructions for seller</p>
-    <textarea name="note">{{ cart.note }}</textarea>
-  </div>
-
 </form>
-
-{% else %}
-
-<div>
-  <h2>It appears that your cart is currently empty!</h2>
-  <h3>You can continue browsing <a href="/collections/all">here</a>.</h3>
-</div>
-
 {% endif %}

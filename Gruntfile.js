@@ -14,28 +14,28 @@ module.exports = function(grunt) {
           {
             expand: true, 
             flatten: true,
-            src: 'source/shopify-skeleton-theme/config/settings.html', 
+            src: 'source/ajmalafif-bootstrapify/theme/config/settings.html', 
             dest: 'theme/config/'
           },
 
           {
               expand: true, 
               flatten: true,
-              src: 'source/shopify-skeleton-theme/layout/*.liquid', 
+              src: 'source/ajmalafif-bootstrapify/theme/layout/*.liquid', 
               dest: 'theme/layout/'
             },
 
           {
             expand: true, 
             flatten: true,
-            src: 'source/shopify-skeleton-theme/snippets/*.liquid', 
+            src: 'source/ajmalafif-bootstrapify/theme/snippets/*.liquid', 
             dest: 'theme/snippets/'
           },
 
           {
             expand: true, 
             flatten: true,
-            src: 'source/shopify-skeleton-theme/templates/*.liquid', 
+            src: 'source/ajmalafif-bootstrapify/theme/templates/*.liquid', 
             dest: 'theme/templates/'
           }
 
@@ -46,29 +46,30 @@ module.exports = function(grunt) {
     sync: {
         main: {
           files: [{
-            cwd: 'source/shopify-skeleton-theme/',
+            cwd: 'source/ajmalafif-bootstrapify/theme/',
             src: '**/*',
             dest: 'theme/'
           }
-        ],
-          files: [{
-            cwd: 'source/bootstrap/dist/css/',
-            src: '*',
-            dest: 'theme/assets'
-          }
-        ],
-          files: [{
-            cwd: 'source/bootstrap/dist/js/',
-            src: '*',
-            dest: 'theme/assets'
-          }
         ]
+        // ,
+        //   files: [{
+        //     cwd: 'source/bootstrap/dist/css/',
+        //     src: '*',
+        //     dest: 'theme/assets'
+        //   }
+        // ],
+        //   files: [{
+        //     cwd: 'source/bootstrap/dist/js/',
+        //     src: '*',
+        //     dest: 'theme/assets'
+        //   }
+        // ]
       }
     },
 
     watch: {
       liquid: {
-         files: ['source/shopify-skeleton-theme/**/*','source/bootstrap/dist/**/*'],
+         files: ['source/ajmalafif-bootstrapify/theme/**/*','source/bootstrap/dist/**/*'],
          tasks: ['sync'],
          options: {
            event: ['added', 'changed']

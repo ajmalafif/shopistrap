@@ -1,0 +1,10 @@
+<h4>{% include '__localize' with 'Join our newsletter' %}</h4>
+<div class="form-inline">
+  {% form 'customer' %}
+  <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter">
+  <div class="input-group">
+    <input type="text" id="contact_email" name="contact[email]" class="form-control" placeholder="{% include '__localize' with 'Your email address' %}">
+    <span class="input-group-btn"><button type="submit" class="btn btn-default">{% include '__localize' with 'Sign up!' %}</button></span>
+  </div>
+  {% endform %}
+</div>

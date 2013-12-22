@@ -1,27 +1,21 @@
-{% comment %}
-Re-use the 'rte' class wherever you output content that was added by a merchant using
-the Rich Text Editor ( 'rte' stands for rich text editor ).
-Style all HTML elements in that content the same way across the board.
-Use the 'rte' class in your CSS to help maintain that consistency.
-Example: the h2 element should have the same size and color in:
-- product descriptions
-- collection descriptions
-- 'page' pages' content
-- blog post
-{% endcomment %}
-
-{% assign page = pages.frontpage %}
-
-<div class="rte">
-  {{ page.content }}
+{% unless pages[settings.homepage-intro] == empty %}
+<h1 class="page-header">{{ page_title }}</h1>
+<div class="lead">
+  {{ pages[settings.homepage-intro].content }}
 </div>
+{% endunless %}
 
-{% assign collection = collections.frontpage %}
+{% include '__per-row' %}
+{% if settings.featured-collections-linklist %}
+<h2>{{ linklists[settings.featured-collections-linklist].title }}</h2>
+  {% include 'list-collections' %}
+{% endif %}
 
-<ul class="grid clearfix">
-{% for product in collection.products %}
-  {% include 'product-grid-item' with 'three-per-row' %}
-{% else %}
-<p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>
-{% endfor %}
-</ul>
+{% if settings.homepage-featured-products-collection %}
+<h2>{{ collections[settings.homepage-featured-products-collection].title }}</h2>
+<div class="row">{% if settings.featured-products-limit contains 'row' %}{% assign limit = settings.featured-products-limit | remove: 'row' | remove: 'rows' | remove: ' ' | times: per-row %}{% else %}{% assign limit = 50 %}{% endif %}
+  {% for p in collections[settings.homepage-featured-products-collection].products | limit: limit %}
+    {% include '_product' with p %}
+  {% endfor %}
+</div>
+{% endif %}

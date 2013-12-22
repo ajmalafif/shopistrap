@@ -1,15 +1,23 @@
-{% include 'collection-listing' %}
+{% include '__per-row' %}
 
-{% comment %}
-{% raw %}
-<!-- Alternatively, if not using a snippet, use the code below. 
-To use the code below, get rid of the above 'include', and get rid of the comment and raw tags, and you're in business. -->
-<ul>
-{% for collection in collections %}
-  {% unless collection.handle == 'all' or collection.handle == 'frontpage' %}
-  {% include 'collection-grid-item' with 'three-per-row' %}
-  {% endunless %}
-{% endfor %}
-</ul>
-{% endraw %}
-{% endcomment %}
+<h1 class="page-header">Product Collections</h1>
+
+{% if settings.featured-collections-linklist == '' %}
+  {% paginate collections by settings.default-pagination %}
+  {% if collections.size > 0 %}
+    <div class="row">
+    {% for collection in collections %}
+      {% include '_collection' with collection %}
+      {% include '_end_row' %}
+    {% endfor %}
+    </div>
+    {% include 'pagination' %}
+  {% else %}
+    <div class="alert alert-info text-center">
+      <h3><i class="fa fa-info-circle"></i> No collections found.</h3>
+    </div>
+  {% endif %}
+  {% endpaginate %}
+{% else %}
+  {% include 'list-collections' %}
+{% endif %}
