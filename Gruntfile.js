@@ -50,13 +50,25 @@ module.exports = function(grunt) {
             src: '**/*',
             dest: 'theme/'
           }
+        ],
+          files: [{
+            cwd: 'source/bootstrap/dist/css/',
+            src: '*',
+            dest: 'theme/assets'
+          }
+        ],
+          files: [{
+            cwd: 'source/bootstrap/dist/js/',
+            src: '*',
+            dest: 'theme/assets'
+          }
         ]
       }
     },
 
     watch: {
       liquid: {
-         files: 'source/shopify-skeleton-theme/**/*',
+         files: ['source/shopify-skeleton-theme/**/*','source/bootstrap/dist/**/*'],
          tasks: ['sync'],
          options: {
            event: ['added', 'changed']
