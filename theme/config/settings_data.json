@@ -232,7 +232,7 @@
       "slide-caption-3": "",
       "slide-caption-4": "",
       "slide-caption-5": "",
-      "round-avatars": true,
+      "round-avatars": false,
       "show-author-bios": false,
       "show-author-on-article": false,
       "show-author-on-index": false,
