@@ -3,13 +3,35 @@
 </div>
 
 <fieldset>
-  <legend>Branding</legend>
-  
+  <legend>Logo — General</legend>
+
   <table>
     <tr>
-      <th><label for="logo-alignment">Logo alignment</label></th>
+      <th><label for="logo-placement">Logo (both Image/Text-based logo) placement</label></th>
+      <td>
+        <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div><div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div><div><input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header</div>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th><label for="logo-alignment">Text-only logo alignment</label></th>
       <td>
         <div><input type="radio" name="logo-alignment" id="logo-alignment" value="center" checked="checked" /> Center</div><div><input type="radio" name="logo-alignment" id="logo-alignment" value="left" /> Left</div><div><input type="radio" name="logo-alignment" id="logo-alignment" value="right" /> Right</div>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend>Logo — Image</legend>
+
+  <table>
+    <tr>
+      <th><label for="use-logo-image">Use logo image</label></th>
+      <td>
+        <input type="checkbox" name="use-logo-image" id="use-logo-image" value="1" /> Yes
       </td>
     </tr>
   </table>
@@ -22,26 +44,9 @@
       </td>
     </tr>
   </table>
-  
-  <table>
-    <tr>
-      <th><label for="logo-placement">Logo placement</label></th>
-      <td>
-        <div><input type="radio" name="logo-placement" id="logo-placement" value="navbar" checked="checked" /> Navbar</div><div><input type="radio" name="logo-placement" id="logo-placement" value="sidebar" /> Sidebar</div><div><input type="radio" name="logo-placement" id="logo-placement" value="header" /> Header</div>
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <th><label for="use-logo-image">Use logo image</label></th>
-      <td>
-        <input type="checkbox" name="use-logo-image" id="use-logo-image" value="1" /> Yes
-      </td>
-    </tr>
-  </table>
-  
+
 </fieldset>
+
 <fieldset>
   <legend>Cart</legend>
   
