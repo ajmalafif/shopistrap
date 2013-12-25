@@ -7,6 +7,7 @@ It's a work in-progress so don't use this on your live site or clients work.
 
 ### Liquid snippets
 + customer folder?
++ Tons and tons
 
 #### Features
 
