@@ -8,7 +8,6 @@ It's a work in-progress so don't use this on your live site or clients work.
 ### Liquid snippets
 + customer folder?
 
-
 #### Features
 
 + ~~Multiple currencies~~. [Implemented here.](https://github.com/ajmalafif/shopistrap/commit/1ca7717e56ef07e2472cacab927537890ccdc590)
