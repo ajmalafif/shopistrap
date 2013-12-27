@@ -11,6 +11,10 @@
   </ul>
   {% endunless %}
 
+  {% comment %}
+  Try to include Featured Products (maybe with one of those selected from Settings) on sidebar.
+  {% endcomment %}
+
   {% unless blogs[settings.sidebar-blog] == empty %}
   <h4 class="page-header">{{ blogs[settings.sidebar-blog].title }}</h4>
 
